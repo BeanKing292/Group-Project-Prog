@@ -10,9 +10,7 @@ typedef struct Date {
     int tm_hour;  // hours (0-23)
     int tm_mday;  // day of month (1-31)
     int tm_mon;   // month (0-11)
-    int tm_year;  // years since 1900
-    int tm_wday;  // day of week (0-6, Sunday=0)
-    int tm_yday;  // day of year (0-365)
+    int tm_year;  
 }Date;
 
 typedef struct Task {
@@ -23,8 +21,20 @@ typedef struct Task {
 
 Task createTask(char* title, Date doneByDate, char* description);
 
-Date setDate(int tm_min, int tm_hour, int tm_mday, int tm_mon, int tm_year, int tm_wday, int tm_yday);
+Date setDate(int tm_min, int tm_hour, int tm_mday, int tm_mon, int tm_year);
+
+void deleteTask(Task* todoList[], int orderPosition);
 
 void displayRange(Task* TodoList);
 
 void displayAll(Task* TodoList);
+
+void updateTitle(Task* todoList[], char title, int orderPosition);
+
+void updateDescription(Task* todoList[], char description, int orderPosition);
+
+void updateDoneByDate(Task* todoList[], Date doneByDate, int orderPosition);
+
+void printTask(Task* TodoList[], int orderPosition);
+
+void printDate(Task* task);
