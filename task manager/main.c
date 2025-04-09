@@ -11,6 +11,7 @@ int main(void) {
 	char* title = "check";
 	char* description = "house";
 
+	//File reader 
 	FILE* TaskManager;
 	TaskManager = fopen("TaskList.txt", "r");
 	if (TaskManager != NULL) {
@@ -19,17 +20,18 @@ int main(void) {
 		}
 	}
 	else {
-		//scanf("%s", title);
-	//	scanf("%s", description);
 
 		Task newestTask = createTask(title, doneByDate, description);
 		for (int i = 0; i < 10; i++) {
 			todoList[i] = newestTask;
 		}
 	}
-//	displayRange(&todoList);
+	displayRange(&todoList);
+	
 	displayAll(&todoList);
-//	displayOne(&todoList);
+	
+	displayOne(&todoList);
+	//File Writer
 	TaskManager = fopen("TaskList.txt", "w");
 	for(int i = 0; i < 10; i++){
 		fprintf(TaskManager, "%s %s %d %d %d\n", todoList[i].title, todoList[i].description, todoList[i].doneByDate.tm_year, todoList[i].doneByDate.tm_mon, todoList[i].doneByDate.tm_mday);

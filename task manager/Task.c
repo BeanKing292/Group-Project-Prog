@@ -92,8 +92,10 @@ void displayOne(Task* TodoList) {
 
 void displayRange(Task* TodoList) {
 	int boolean = 0;
+	printf("put in 1 for range in order made and 2 for range in date\n");
 	scanf("%d", &boolean);
 	if (boolean == 1) {
+		printf("put in bottom of range then top\n");
 		int rangeBottom = 0, rangeTop = 0;
 		scanf("%d %d", &rangeBottom, &rangeTop);
 		for (int i = rangeBottom; i <= rangeTop; i++) {
@@ -101,6 +103,7 @@ void displayRange(Task* TodoList) {
 		}
 	}
 	else if (boolean == 2){
+		printf("put in bottom of range then top\n");
 		int dayBottom = 0, monthBottom = 0, yearBottom = 0, dayTop = 0, monthTop = 0, yearTop = 0, sumBottom, sumTop, sumDate;
 		scanf("%d %d", &dayBottom, &monthBottom, &yearBottom, &dayTop, &monthTop, &yearTop);
 		sumBottom = dayBottom + (30 * monthTop) + (364 * yearBottom);
