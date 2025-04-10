@@ -29,9 +29,11 @@ Task** openTaskFile(char* fileName){
 }
 
 int main(void) {
+	int position = 0;
 	Task** taskList = openTaskFile("TaskList.txt");
 	while (1) {
-		mainUI(taskList);
+		position = mainUI(taskList, position);
+		printf("%d", position);
 	}
 
 }

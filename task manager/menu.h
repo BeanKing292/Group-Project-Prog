@@ -1,5 +1,5 @@
 #pragma once
 
-void mainUI(Task** todoList);
+int mainUI(Task** todoList, int position);
 
-void newTaskUI(Task** todoList);
+int newTaskUI(Task** todoList, int position);

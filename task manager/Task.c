@@ -17,11 +17,12 @@ Task* getTask(Task* todoList[], int orderPosition) {
 }
 
 void deleteTask(Task* todoList[], int orderPosition) {
-	free(todoList[orderPosition - 1]);
 	printf("1");
-	while (todoList[orderPosition] != '\0') {
-		printf("2");
-		if (todoList[orderPosition - 1] == NULL) {
+	free(&todoList[orderPosition - 1]);
+	printf("2");
+	while (&todoList[orderPosition] != '\0') {
+		printf("3");
+		if (&todoList[orderPosition - 1] == NULL) {
 			if (todoList[orderPosition] != NULL || todoList[orderPosition - 1] != '\0') {
 				todoList[orderPosition - 1] = todoList[orderPosition];
 				orderPosition++;

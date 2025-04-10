@@ -19,7 +19,7 @@ typedef struct Date {
 }Date;
 
 typedef struct Task {
-    char title[MAX_TITLE_SIZE]; // the title will be shorter then description, saving memory -  Alex
+    char title[MAX_TITLE_SIZE];
     Date doneByDate;
     char description[MAX_DESC_SIZE];
 } Task;

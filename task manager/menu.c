@@ -8,12 +8,10 @@
 #include "input.h"
 
 // 1. New task menu
-void newTaskUI(Task** todoList) {
+int newTaskUI(Task** todoList, int position) {
 	// initializing variables
 	char title[MAX_TITLE_SIZE] = {0};
 	char description[MAX_DESC_SIZE] = { 0 };
-	int position = 0;
-
 	inputString(title, "Please input task title", MAX_TITLE_SIZE);
 	inputString(description, "Please input task description", MAX_DESC_SIZE);	
 
@@ -24,10 +22,12 @@ void newTaskUI(Task** todoList) {
 		inputInt("Please input task done by number of month: "),
 		inputInt("Please input task done by number of year: ")
 	);
+	printf("%d", todoList[position]->title != NULL);
 	if (todoList[position]->title != NULL) {
 		position++;
 	}
 	todoList[position] = createTask(title, doneByDate, description);
+	return position;
 }
 
 // 2. delete task menu
@@ -38,7 +38,7 @@ void newTaskUI(Task** todoList) {
 
 
 // The main UI
-void mainUI(Task** todoList) {
+int mainUI(Task** todoList, int position) {
 	printf(
 		"\nMenu:"
 		"\n1. New Task"
@@ -51,7 +51,7 @@ void mainUI(Task** todoList) {
 	// Option selection
 	switch (inputInt(">>>")) {
 	case 1:
-		newTaskUI(todoList);
+		position = newTaskUI(todoList, position);
 		break;
 	case 2:
 		deleteTask(todoList, inputInt("please input the position number of the task you would like to delete: "));
@@ -77,4 +77,5 @@ void mainUI(Task** todoList) {
 		fprintf(stderr, "\nERROR: invalid input");
 		break;
 	}
+	return position;
 }
