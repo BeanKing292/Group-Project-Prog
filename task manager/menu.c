@@ -8,7 +8,7 @@
 #include "input.h"
 
 // 1. New task menu
-void newTaskUI(Task* todoList) {
+void newTaskUI(Task* todoList[]) {
 	// initializing variables
 	char title[MAX_TITLE_SIZE] = {0};
 	char description[MAX_DESC_SIZE] = { 0 };
@@ -24,13 +24,13 @@ void newTaskUI(Task* todoList) {
 		inputInt("Please input task done by number of month: "),
 		inputInt("Please input task done by number of year: ")
 	);
-	if (todoList[position].title != NULL) {
+	if (todoList[position]->title != NULL) {
 		position++;
 	}
 	todoList[position] = createTask(title, doneByDate, description);
 }
 
-// 2. New task menu
+// 2. delete task menu
 
 // 3. Update task menu
 
@@ -38,7 +38,7 @@ void newTaskUI(Task* todoList) {
 
 
 // The main UI
-void mainUI(Task* todoList) {
+void mainUI(Task* todoList[]) {
 	printf(
 		"\nMenu:"
 		"\n1. New Task"
@@ -54,7 +54,7 @@ void mainUI(Task* todoList) {
 		newTaskUI(todoList);
 		break;
 	case 2:
-		printf("\n2. Delete Task");
+		deleteTask(todoList, inputInt("please input the position number of the task you would like to delete"));
 		break;
 	case 3:
 		printf("\n3. Update Task");
@@ -62,7 +62,7 @@ void mainUI(Task* todoList) {
 	case 4:
 		printf("\n4. Display Task");
 		int orderPosition = inputInt("please input the position number of the task you would like to display: ");
-		printf("%s", todoList[orderPosition].title);
+		printf("%s", todoList[orderPosition]->title);
 		break;
 	case 5:
 		printf("\n5. Display Range");

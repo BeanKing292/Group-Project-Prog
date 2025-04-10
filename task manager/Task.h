@@ -24,7 +24,7 @@ typedef struct Task {
     char description[MAX_DESC_SIZE];
 } Task;
 
-Task createTask(char* title, Date doneByDate, char* description);
+Task* createTask(char* title, Date doneByDate, char* description);
 
 Date setDate(int tm_min, int tm_hour, int tm_mday, int tm_mon, int tm_year);
 

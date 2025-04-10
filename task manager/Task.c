@@ -1,23 +1,23 @@
 #include "Task.h"
 
-Task createTask(const char* title, Date doneByDate, char* description) {
-	Task newTask = { 0 };
+Task* createTask(const char* title, Date doneByDate, char* description) {
+	Task* newTask = malloc(sizeof(Task));
 	int len = strlen(title) + 1;
-	*newTask.title = (char*)malloc(len * sizeof(char));
-	if (newTask.title == NULL) {
+	*newTask->title = (char*)malloc(len * sizeof(char));
+	if (newTask->title == NULL) {
 		fprintf(stderr, "error");
 		exit(EXIT_FAILURE);
 	}
-	strncpy(newTask.title, title, len);
+	strncpy(newTask->title, title, len);
 
 	len = strlen(description) + 1;
-	*newTask.description = (char*)malloc(len * sizeof(char));
-	if (newTask.description == NULL) {
+	*newTask->description = (char*)malloc(len * sizeof(char));
+	if (newTask->description == NULL) {
 		fprintf(stderr, "error");
 		exit(EXIT_FAILURE);
 	}
-	strncpy(newTask.description, description, len);
-	newTask.doneByDate = doneByDate;
+	strncpy(newTask->description, description, len);
+	newTask->doneByDate = doneByDate;
 	return newTask;
 }
 

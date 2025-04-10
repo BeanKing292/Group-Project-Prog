@@ -9,9 +9,9 @@
 
 // made some changes to the file reader to simplify it - Alex
 //File reader 
-Task* openTaskFile(char* fileName){
+Task** openTaskFile(char* fileName){
 	// Allocate memory for pointer array
-	Task* taskList = malloc(sizeof(Task) * MAX_TASKS);
+	Task** taskList = malloc(sizeof(Task*) * MAX_TASKS);
 	// Exit if malloc failed
 	if (taskList == NULL) {
 		printf("Failed to allocate memory. Exiting...");
@@ -23,13 +23,13 @@ Task* openTaskFile(char* fileName){
 		printf("No file found.");
 		return taskList;
 	}
-	fread(taskList, sizeof(Task), MAX_TASKS, fp);
+	//fread(taskList, sizeof(Task), MAX_TASKS, fp);
 	fclose(fp);
 	return taskList;
 }
 
 int main(void) {
-	Task* taskList = openTaskFile("TaskList.txt");
+	Task** taskList = openTaskFile("TaskList.txt");
 	while (1) {
 		mainUI(taskList);
 	}
