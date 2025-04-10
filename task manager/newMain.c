@@ -2,10 +2,21 @@
 #include <stdio.h>
 #include <string.h>
 #include "Task.h"
+#include "menu.h"
 
+
+int  inputINT(char* prompt) {
+	int input = 0;
+	// prints  prompt.
+	printf("\n%s", prompt);
+	// Get the input form user
+	scanf_s("%d", &input);
+	// Clear the input buffer
+	while (getchar() != '\n');
+	return input;
+}
 
 // a new temp main file so i can get everything organized - Alex
-
 
 // made some changes to the file reader to simplify it - Alex
 //File reader 
@@ -32,5 +43,7 @@ Task** openTaskFile(char* fileName){
 }
 
 int main(void) {
-	openTaskFile("TaskList.txt");
+	//Task taskList[10] = openTaskFile("TaskList.txt");
+	mainUI();
+
 }

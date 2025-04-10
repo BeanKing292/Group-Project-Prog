@@ -21,10 +21,13 @@
   <ItemGroup>
     <ClCompile Include="input.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="menu.c" />
     <ClCompile Include="newMain.c" />
     <ClCompile Include="Task.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="input.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="Task.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
