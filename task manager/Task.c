@@ -9,6 +9,7 @@ Task* createTask(const char* title, Date doneByDate, char* description) {
 	strncpy(newTask->title, title, MAX_TITLE_SIZE);
 	strncpy(newTask->description, description, MAX_DESC_SIZE);
 	newTask->doneByDate = doneByDate;
+	newTask->isTask = 1;
 	return newTask;
 }
 

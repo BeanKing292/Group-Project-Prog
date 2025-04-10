@@ -1,5 +1,9 @@
 #pragma once
 
-int mainUI(Task** todoList, int position);
+typedef struct ManagerInfo {
+	int taskAmount;
+}ManagerInfo;
 
-int newTaskUI(Task** todoList, int position);
+void mainUI(Task** todoList, ManagerInfo* position);
+
+void newTaskUI(Task** todoList, ManagerInfo* position);

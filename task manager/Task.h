@@ -22,6 +22,7 @@ typedef struct Task {
     char title[MAX_TITLE_SIZE];
     Date doneByDate;
     char description[MAX_DESC_SIZE];
+    int isTask;
 } Task;
 
 Task* createTask(char* title, Date doneByDate, char* description);
