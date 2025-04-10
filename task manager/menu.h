@@ -1,3 +1,5 @@
 #pragma once
 
-void mainUI();
+void mainUI(Task* todoList);
+
+void newTaskUI(Task* todoList);

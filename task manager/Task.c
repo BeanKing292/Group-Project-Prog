@@ -56,6 +56,7 @@ Date setDate(int tm_min, int tm_hour, int tm_mday, int tm_mon, int tm_year) {
 	newDate.tm_mday = tm_mday;
 	newDate.tm_mon = tm_mon;
 	newDate.tm_year - tm_year;
+	return newDate;
 }
 void displayOne(Task* TodoList) {
 	int boolean = 0, check = 11, sumDate;
