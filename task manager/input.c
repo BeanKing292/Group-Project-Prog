@@ -1,1 +1,1 @@
-// making seperate input functions because they help with orginization - Alex
+// making separate input functions because they help with organization - Alex

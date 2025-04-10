@@ -3,29 +3,34 @@
 #include <string.h>
 #include "Task.h"
 
+
 // a new temp main file so i can get everything organized - Alex
 
 
 // made some changes to the file reader to simplify it - Alex
 //File reader 
-FILE* openFile(){
-	FILE* TaskManager;
-	TaskManager = fopen("TaskList.txt", "r");
-	if (TaskManager != NULL) {
-		for (int i = 0; i < 10; i++) {
-			fscanf(TaskManager, "%s %s %d %d %d\n", todoList[i].title, todoList[i].description, &todoList[i].doneByDate.tm_year, &todoList[i].doneByDate.tm_mon, &todoList[i].doneByDate.tm_mday);
-		}
+Task** openTaskFile(char* fileName){
+	// Allocate memory for pointer array
+	Task** taskList = malloc(sizeof(Task*)*MAX_TASKS);
+	// Exit if malloc failed
+	if (taskList == NULL) {
+		printf("Failed to allocate memory. Exiting...");
+		exit(1);
 	}
-	// If no existing data can be found, create a new one
-	else {
-
-		Task newestTask = createTask(title, doneByDate, description);
-		for (int i = 0; i < 10; i++) {
-			todoList[i] = newestTask;
-		}
+	// Open file
+	FILE* fp = fopen(fileName, "r");
+	for (int i = 0; i <= MAX_TASKS; i++) {
+		taskList[i] = malloc(sizeof(Task));
+		if (taskList[i] == NULL) {
+				printf("Failed to allocate memory. Exiting...");
+				exit(1);
+			}
+		fread(taskList[i], sizeof(Task), 1, fp);
 	}
+	fclose(fp);
+	return taskList;
 }
 
 int main(void) {
-
+	openTaskFile("TaskList.txt");
 }
