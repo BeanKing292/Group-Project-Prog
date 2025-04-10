@@ -3,18 +3,7 @@
 #include <string.h>
 #include "Task.h"
 #include "menu.h"
-
-
-int  inputINT(char* prompt) {
-	int input = 0;
-	// prints  prompt.
-	printf("\n%s", prompt);
-	// Get the input form user
-	scanf_s("%d", &input);
-	// Clear the input buffer
-	while (getchar() != '\n');
-	return input;
-}
+#include "input.h"
 
 // a new temp main file so i can get everything organized - Alex
 

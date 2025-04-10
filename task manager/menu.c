@@ -1,10 +1,39 @@
 // All function involving our UI
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "Task.h"
 #include "menu.h"
+#include "input.c"
+
+// New task menu
+void newTaskUI(Task* todoList) {
+	// initializing variables
+	char title[MAX_TITLE_SIZE] = {0};
+	char description = "";
+	int position = 0;
+
+	inputString(title, "Please input task title", MAX_TITLE_SIZE);
+	inputString(description, "Please input task description", MAX_DESC_SIZE);
+		
+	Date doneByDate = setDate(
+		inputInt("Please input task done by number date of month: "),
+		inputInt("Please input task done by hour"),
+		inputInt("Please input task done by number of month"),
+		inputInt("Please input task done by number of month"),
+		inputInt("Please input task done by number of year")
+	);
+
+	if (todoList[position].title != NULL) {
+		position++;
+	}
+		
+	todoList[position] = createTask(title, doneByDate, description);
+}
 
 // The main UI
-void mainUI() {
+void mainUI(Task* todoList) {
 	printf(
 		"\nMenu:"
 		"\n1. New Task"
@@ -17,7 +46,7 @@ void mainUI() {
 	// Option selection
 	switch (inputINT(">>>")) {
 	case 1:
-		printf("\n1.New Task");
+		newTaskUI(todoList);
 		break;
 	case 2:
 		printf("\n2. Delete Task");
