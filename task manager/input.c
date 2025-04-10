@@ -1,0 +1,1 @@
+// making seperate input functions because they help with orginization - Alex

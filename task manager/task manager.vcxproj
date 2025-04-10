@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="input.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="newMain.c" />
     <ClCompile Include="Task.c" />
   </ItemGroup>
   <ItemGroup>
