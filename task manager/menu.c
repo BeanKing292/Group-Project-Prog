@@ -12,8 +12,8 @@ void newTaskUI(Task** todoList, ManagerInfo* position) {
 	// initializing variables
 	char title[MAX_TITLE_SIZE] = {0};
 	char description[MAX_DESC_SIZE] = { 0 };
-	inputString(title, "Please input task title", MAX_TITLE_SIZE);
-	inputString(description, "Please input task description", MAX_DESC_SIZE);	
+	inputString(title, "Please input task title: ", MAX_TITLE_SIZE);
+	inputString(description, "Please input task description: ", MAX_DESC_SIZE);	
 
 	Date doneByDate = setDate(
 		inputInt("Please input task done by minute: "),
@@ -28,11 +28,36 @@ void newTaskUI(Task** todoList, ManagerInfo* position) {
 	todoList[position->taskAmount-1] = createTask(title, doneByDate, description);
 }
 
-
 // 3. Update task menu
-
+void updateTaskUI(Task** todoList) {
+	int orderPosition = inputInt("please input the position number of the task you would like to update: ");
+	int taskUpdate = inputInt("please input 1 to update title, 2 to update date, 3 to update description");
+	if (taskUpdate == 1) {
+		printf("Please input new Title");
+		scanf("%s", title);
+		updateTitle(todoList, title, orderPosition);
+	}
+	else if (taskUpdate == 2) {
+		Date doneByDate = setDate(
+			inputInt("Please input task done by minute: "),
+			inputInt("Please input task done by hour: "),
+			inputInt("Please input task done by number date of month: "),
+			inputInt("Please input task done by number of month: "),
+			inputInt("Please input task done by number of year: ")
+			);
+		updateDoneByDate(todoList, doneByDate, orderPosition);
+	}
+	else if (taskUpdate == 3) {
+		printf("Please input new description :");
+		scanf("%s", description);
+		updateDescription(todoList, description, orderPosition);
+	}
+}
 // 4. Display task menu
+// all in one menu for display tasks
+displayTasks() {
 
+}
 
 // The main UI
 void mainUI(Task** todoList, ManagerInfo* position) {

@@ -7,8 +7,8 @@
 
 // a new temp main file so i can get everything organized - Alex
 
-// made some changes to the file reader to simplify it - Alex
-//File reader 
+// Made some changes to the file reader - Alex
+// Read from File
 Task** openTaskFile(char* fileName, ManagerInfo* position){
 	// Allocate memory for pointer array
 	Task** taskList = malloc(sizeof(Task*) * MAX_TASKS);
@@ -38,6 +38,7 @@ Task** openTaskFile(char* fileName, ManagerInfo* position){
 	return taskList;
 }
 
+// Save to File
 void saveTaskFile(char* fileName, Task** taskList) {
 	// Write to file
 	FILE* fp = fopen(fileName, "wb");
@@ -48,6 +49,8 @@ void saveTaskFile(char* fileName, Task** taskList) {
 	fclose(fp);
 		fclose(fp);
 }
+
+
 int main(void) {
 	ManagerInfo* position = calloc(0, sizeof(ManagerInfo));
 	if (position == NULL) {
