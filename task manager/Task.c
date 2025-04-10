@@ -2,21 +2,12 @@
 
 Task* createTask(const char* title, Date doneByDate, char* description) {
 	Task* newTask = malloc(sizeof(Task));
-	int len = strlen(title) + 1;
-	*newTask->title = (char*)malloc(len * sizeof(char));
-	if (newTask->title == NULL) {
+	if (newTask == NULL) {
 		fprintf(stderr, "error");
 		exit(EXIT_FAILURE);
 	}
-	strncpy(newTask->title, title, len);
-
-	len = strlen(description) + 1;
-	*newTask->description = (char*)malloc(len * sizeof(char));
-	if (newTask->description == NULL) {
-		fprintf(stderr, "error");
-		exit(EXIT_FAILURE);
-	}
-	strncpy(newTask->description, description, len);
+	strncpy(newTask->title, title, MAX_TITLE_SIZE);
+	strncpy(newTask->description, description, MAX_DESC_SIZE);
 	newTask->doneByDate = doneByDate;
 	return newTask;
 }
@@ -27,7 +18,9 @@ Task* getTask(Task* todoList[], int orderPosition) {
 
 void deleteTask(Task* todoList[], int orderPosition) {
 	free(todoList[orderPosition - 1]);
+	printf("1");
 	while (todoList[orderPosition] != '\0') {
+		printf("2");
 		if (todoList[orderPosition - 1] == NULL) {
 			if (todoList[orderPosition] != NULL || todoList[orderPosition - 1] != '\0') {
 				todoList[orderPosition - 1] = todoList[orderPosition];
