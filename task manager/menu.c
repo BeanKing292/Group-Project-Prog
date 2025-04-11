@@ -71,7 +71,7 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 			newTaskUI(todoList, position);
 			break;
 		case 2:
-			deleteTask(todoList, inputInt("please input the position number of the task you would like to delete: "));
+			deleteTask(todoList, inputInt("please input the position number of the task you would like to delete: "), position);
 			break;
 		case 3:
 			updateTaskUI(todoList);

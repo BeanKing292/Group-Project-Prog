@@ -1,4 +1,5 @@
 #include "Task.h"
+#include "menu.h"
 
 Task* createTask(const char* title, Date doneByDate, char* description) {
 	Task* newTask = malloc(sizeof(Task));
@@ -17,19 +18,23 @@ Task* getTask(Task** todoList, int orderPosition) {
 	return todoList[orderPosition - 1];
 }
 
-void deleteTask(Task* todoList[], int orderPosition) {
-	printf("1");
-	free(&todoList[orderPosition - 1]);
-	printf("2");
-	while (&todoList[orderPosition] != '\0') {
-		printf("3");
-		if (&todoList[orderPosition - 1] == NULL) {
-			if (todoList[orderPosition] != NULL || todoList[orderPosition - 1] != '\0') {
-				todoList[orderPosition - 1] = todoList[orderPosition];
-				orderPosition++;
-			}
-		}
+void deleteTask(Task** todoList, int orderPosition, ManagerInfo* position) {
+	// Deletes the task
+	free(todoList[orderPosition - 1]);
+	// Shifts everything after delete task to the left
+	position->taskAmount--;
+	for (int i = orderPosition - 1; i < MAX_TASKS; i++){
+			todoList[i - 1] = todoList[i];
 	}
+		//while (&todoList[orderPosition] != '\0') {
+		//printf("3");
+		//if (todoList[orderPosition - 1]->isTask == 1) {
+		//	if (todoList[orderPosition] != NULL || todoList[orderPosition - 1] != '\0') {
+		//		todoList[orderPosition - 1] = todoList[orderPosition];
+		//		orderPosition++;
+		//	}
+		//}
+	//}
 }
 
 void updateTitle(Task* todoList[], char* newTitle, int orderPosition) {
