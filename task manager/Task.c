@@ -32,16 +32,16 @@ void deleteTask(Task* todoList[], int orderPosition) {
 	}
 }
 
-void updateTitle(Task* todoList[], char title, int orderPosition) {
-	strcpy(todoList[orderPosition]->title, title);
+void updateTitle(Task* todoList[], char* newTitle, int orderPosition) {
+	strcpy_s(todoList[orderPosition]->title, (sizeof(char) * MAX_TITLE_SIZE), newTitle);
 }
 
 void updateDoneByDate(Task* todoList[], Date doneByDate, int orderPosition) {
 	todoList[orderPosition]->doneByDate = doneByDate;
 }
 
-void updateDescription(Task* todoList[], char description, int orderPosition) {
-	strcpy(todoList[orderPosition]->description, description);
+void updateDescription(Task* todoList[], char* newDescription, int orderPosition) {
+	strcpy_s(todoList[orderPosition]->description, (sizeof(char) * MAX_DESC_SIZE), newDescription, MAX_DESC_SIZE);
 }
 
 Date setDate(int tm_min, int tm_hour, int tm_mday, int tm_mon, int tm_year) {
@@ -53,14 +53,14 @@ Date setDate(int tm_min, int tm_hour, int tm_mday, int tm_mon, int tm_year) {
 	newDate.tm_year - tm_year;
 	return newDate;
 }
-void displayOne(Task* TodoList) {
+void displayOne(Task** TodoList) {
 	int boolean = 0, check = 11, sumDate;
 	scanf("%d", &boolean);
 	if (boolean == 1) {
 		int min = 10000000;
 		//	sumDate = day + (30 * month) + (364 * year);
 		for (int i = 0; i <= sizeof(TodoList); i++) {
-			sumDate = TodoList[i].doneByDate.tm_mday + (30 * TodoList[i].doneByDate.tm_mon) + (364 * TodoList[i].doneByDate.tm_year);
+			sumDate = TodoList[i]->doneByDate.tm_mday + (30 * TodoList[i]->doneByDate.tm_mon) + (364 * TodoList[i]->doneByDate.tm_year);
 			if (sumDate < min) {
 				min = sumDate;
 				check = i;
@@ -72,27 +72,27 @@ void displayOne(Task* TodoList) {
 		scanf("%d %d", &day, &month, &year);
 		for (int i = 0; i <= sizeof(TodoList); i++) {
 			lookDate = day + (30 * month) + (364 * year);
-			sumDate = TodoList[i].doneByDate.tm_mday + (30 * TodoList[i].doneByDate.tm_mon) + (364 * TodoList[i].doneByDate.tm_year);
+			sumDate = TodoList[i]->doneByDate.tm_mday + (30 * TodoList[i]->doneByDate.tm_mon) + (364 * TodoList[i]->doneByDate.tm_year);
 			if (sumDate == lookDate) {
 				check = i;
 			}
 		}
 	}
 	else if (boolean == 3) {
-		char* title = TodoList[0].title;
+		char* title = TodoList[0]->title;
 	//	scanf("%s", title);
 		for (int i = 0; i <= sizeof(TodoList); i++) {
-			if (TodoList[i].title == title) {
+			if (TodoList[i]->title == title) {
 				check = i;
 			}
 		}
 	}
 	if (check < 10) {
-		printf("%s \n %s.\n", TodoList[check].title, TodoList[check].description);
+		printf("%s \n %s.\n", TodoList[check]->title, TodoList[check]->description);
 	}
 }
 
-void displayRange(Task* TodoList) {
+void displayRange(Task** TodoList, int upperRange, int lowerRange) {
 	int boolean = 0;
 	printf("put in 1 for range in order made and 2 for range in date\n");
 	scanf("%d", &boolean);
@@ -101,7 +101,7 @@ void displayRange(Task* TodoList) {
 		int rangeBottom = 0, rangeTop = 0;
 		scanf("%d %d", &rangeBottom, &rangeTop);
 		for (int i = rangeBottom; i <= rangeTop; i++) {
-			printf("%s \n %s.\n", TodoList[i].title, TodoList[i].description);
+			printf("%s \n %s.\n", TodoList[i]->title, TodoList[i]->description);
 		}
 	}
 	else if (boolean == 2){
@@ -111,9 +111,9 @@ void displayRange(Task* TodoList) {
 		sumBottom = dayBottom + (30 * monthTop) + (364 * yearBottom);
 		sumTop = dayTop + (30 * monthTop) + (364 * yearTop);
 		for (int i = 0; i <= sizeof(TodoList); i++) {
-			sumDate = TodoList[i].doneByDate.tm_mday + (30 * TodoList[i].doneByDate.tm_mon) + (364 * TodoList[i].doneByDate.tm_year);
+			sumDate = TodoList[i]->doneByDate.tm_mday + (30 * TodoList[i]->doneByDate.tm_mon) + (364 * TodoList[i]->doneByDate.tm_year);
 			if (sumDate < sumTop && sumDate > sumBottom) {
-				printf("%s \n %s.\n", TodoList[i].title, TodoList[i].description);
+				printf("%s \n %s.\n", TodoList[i]->title, TodoList[i]->description);
 			}
 		}
 	}

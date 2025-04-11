@@ -35,9 +35,9 @@ void displayRange(Task* TodoList);
 
 void displayAll(Task* TodoList);
 
-void updateTitle(Task* todoList[], char title, int orderPosition);
+void updateTitle(Task* todoList[], char* title, int orderPosition);
 
-void updateDescription(Task* todoList[], char description, int orderPosition);
+void updateDescription(Task* todoList[], char* description, int orderPosition);
 
 void updateDoneByDate(Task* todoList[], Date doneByDate, int orderPosition);
 

@@ -5,7 +5,7 @@
 #include "menu.h"
 #include "input.h"
 
-// a new temp main file so i can get everything organized - Alex
+// a new main file so i can get everything organized - Alex
 
 // Made some changes to the file reader - Alex
 // Read from File

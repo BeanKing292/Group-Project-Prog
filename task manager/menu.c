@@ -30,12 +30,12 @@ void newTaskUI(Task** todoList, ManagerInfo* position) {
 
 // 3. Update task menu
 void updateTaskUI(Task** todoList) {
-	int orderPosition = inputInt("please input the position number of the task you would like to update: ");
-	int taskUpdate = inputInt("please input 1 to update title, 2 to update date, 3 to update description");
+	int orderPosition = inputInt("\nplease input the position number of the task you would like to update: ");
+	int taskUpdate = inputInt("please input 1 to update title, 2 to update date, 3 to update description: ");
 	if (taskUpdate == 1) {
-		printf("Please input new Title");
-		scanf("%s", title);
-		updateTitle(todoList, title, orderPosition);
+		char newTitle[MAX_TITLE_SIZE] = { 0 };
+		inputString(newTitle, "Please input new Title: ", MAX_TITLE_SIZE);
+		updateTitle(todoList, newTitle, orderPosition);
 	}
 	else if (taskUpdate == 2) {
 		Date doneByDate = setDate(
@@ -48,15 +48,10 @@ void updateTaskUI(Task** todoList) {
 		updateDoneByDate(todoList, doneByDate, orderPosition);
 	}
 	else if (taskUpdate == 3) {
-		printf("Please input new description :");
-		scanf("%s", description);
-		updateDescription(todoList, description, orderPosition);
+		char newDescription[MAX_DESC_SIZE] = { 0 };
+		inputString(newDescription, "Please input new description: ", MAX_DESC_SIZE);
+		updateDescription(todoList, newDescription, orderPosition);
 	}
-}
-// 4. Display task menu
-// all in one menu for display tasks
-displayTasks() {
-
 }
 
 // The main UI
@@ -79,15 +74,15 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 		deleteTask(todoList, inputInt("please input the position number of the task you would like to delete: "));
 		break;
 	case 3:
-		printf("\n3. Update Task");
+		updateTaskUI(todoList);
 		break;
 	case 4:
 		printf("\n4. Display Task");
 		int orderPosition = inputInt("please input the position number of the task you would like to display: ");
-		printf("%s", todoList[orderPosition-1]->title);
+		displayOne(todoList);
 		break;
 	case 5:
-		printf("\n5. Display Range");
+		displayRange(todoList);
 		break;
 	case 6:
 		printf("\n6. Display all Tasks");
