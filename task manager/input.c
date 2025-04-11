@@ -25,8 +25,9 @@ void inputString(char* dst, char* inputPrompt, int MaxLength) {
 	// prints the input prompt.
 	printf("%s", inputPrompt);
 	// Get the input form user
-	scanf_s("%s", input, MaxLength);
+	scanf_s("%[^\n]", input, MaxLength);
 	// Clear the input buffer
 	while (getchar() != '\n');
+	printf("%s", input);
 	strncpy_s(dst, (sizeof(char) * MaxLength), input, MaxLength);
 }

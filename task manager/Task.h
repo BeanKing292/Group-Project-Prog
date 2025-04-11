@@ -41,6 +41,6 @@ void updateDescription(Task* todoList[], char* description, int orderPosition);
 
 void updateDoneByDate(Task* todoList[], Date doneByDate, int orderPosition);
 
-void printTask(Task* TodoList[], int upperRange, int lowerRange);
+void printTask(Task* TodoList[], int lowerRange, int upperRange);
 
 void printDate(Task* task);

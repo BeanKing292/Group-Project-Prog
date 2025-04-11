@@ -79,7 +79,7 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 	case 4:
 		printf("\n4. Display Task");
 		int orderPosition = inputInt("please input the position number of the task you would like to display: ");
-		printTask(todoList, (orderPosition), (orderPosition));
+		printTask(todoList, (orderPosition), (orderPosition+1));
 		break;
 	case 5:
 		break;
