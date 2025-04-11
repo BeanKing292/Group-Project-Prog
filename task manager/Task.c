@@ -132,10 +132,10 @@ void printDate(Task* task) {
 
 void printTask(Task* TodoList[], int lowerRange, int upperRange) {
 	Task* task;
-	for (int i = lowerRange; i < upperRange; i++) {
+	for (int i = lowerRange; i <= upperRange; i++) {
 		task = getTask(TodoList, i);
 
-		printf("Title:\t\t%s\n", task->title);
+		printf("\nTitle:\t\t%s\n", task->title);
 		printf("Description:\t%s\n", task->description);
 		printDate(task);
 	}

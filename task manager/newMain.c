@@ -46,7 +46,7 @@ void saveTaskFile(char* fileName, Task** taskList, int amount) {
 	// Write to file
 	FILE* fp = fopen(fileName, "wb");
 
-	for (int i = 0; i < amount; i++) {
+	for (int i = 0; i < MAX_TASKS; i++) {
 		fwrite(taskList[i], sizeof(Task), 1, fp);
 	}
 	fclose(fp);

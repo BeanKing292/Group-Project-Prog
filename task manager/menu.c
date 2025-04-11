@@ -67,30 +67,47 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 		"\n7. Search for Tasks");
 	// Option selection
 	switch (inputInt(">>>")) {
-	case 1:
-		newTaskUI(todoList, position);
-		break;
-	case 2:
-		deleteTask(todoList, inputInt("please input the position number of the task you would like to delete: "));
-		break;
-	case 3:
-		updateTaskUI(todoList);
-		break;
-	case 4:
-		printf("\n4. Display Task");
-		int orderPosition = inputInt("please input the position number of the task you would like to display: ");
-		printTask(todoList, (orderPosition), (orderPosition+1));
-		break;
-	case 5:
-		break;
-	case 6:
-		printf("\n6. Display all Tasks");
-		break;
-	case 7:
-		printf("\n7. Search for Tasks");
-		break;
-	default:
-		fprintf(stderr, "\nERROR: invalid input");
-		break;
+		case 1:
+			newTaskUI(todoList, position);
+			break;
+		case 2:
+			deleteTask(todoList, inputInt("please input the position number of the task you would like to delete: "));
+			break;
+		case 3:
+			updateTaskUI(todoList);
+			break;
+		case 4: {
+			int orderPosition = inputInt("please input the position number of the task you would like to display: ");
+			if (orderPosition > position->taskAmount) {
+				fprintf(stderr, "ERROR: task does not exist");
+				break;
+			}
+			printTask(todoList, orderPosition, orderPosition);
+			break;
+		}
+		case 5: {
+
+			int lower = inputInt("please input the lower range of the tasks you would like to display: ");
+			int upper = inputInt("please input the upper range of the tasks you would like to display: ");
+			if (lower > position->taskAmount || upper > position->taskAmount) {
+				fprintf(stderr, "ERROR: task does not exist");
+				break;
+			}
+			printTask(todoList, lower, upper);
+			break;
+		}
+		case 6:
+			if (position->taskAmount = 0) {
+				fprintf(stderr, "ERROR: No tasks to display");
+				break;
+			}
+			printTask(todoList, 1, position->taskAmount);
+			break;
+		case 7:
+			printf("\n7. Search for Tasks");
+			break;
+		default:
+			fprintf(stderr, "\nERROR: invalid input");
+			break;
 	}
 }
