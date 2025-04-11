@@ -130,7 +130,7 @@ void printDate(Task* task) {
 	printf("%d/%d/%d", task->doneByDate.tm_mon, task->doneByDate.tm_mday, task->doneByDate.tm_year);
 }
 
-void printTask(Task* TodoList[], int orderPosition) {
+void printTask(Task* TodoList[], int upperRange, int lowerRange) {
 	Task* task;
 	task = getTask(TodoList, orderPosition);
 
