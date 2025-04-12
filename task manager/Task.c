@@ -1,6 +1,5 @@
 #include <string.h>
 #include "Task.h"
-#include "menu.h"
 #include "input.h"
 
 Task* createTask(char* title, Date doneByDate, char* description) {
@@ -9,8 +8,8 @@ Task* createTask(char* title, Date doneByDate, char* description) {
 		fprintf(stderr, "error");
 		exit(EXIT_FAILURE);
 	}
-	strncpy(newTask->title, title, MAX_TITLE_SIZE);
-	strncpy(newTask->description, description, MAX_DESC_SIZE);
+	strncpy_s(newTask->title , (sizeof(char) * MAX_TITLE_SIZE), title, MAX_TITLE_SIZE);
+	strncpy_s(newTask->description, (sizeof(char)* MAX_DESC_SIZE), description, MAX_DESC_SIZE);
 	newTask->doneByDate = doneByDate;
 	newTask->isTask = 1;
 	return newTask;
@@ -26,7 +25,7 @@ void deleteTask(Task** todoList, int orderPosition, ManagerInfo* position) {
 	// Shifts everything after delete task to the left
 	position->taskAmount--;
 	for (int i = orderPosition - 1; i < MAX_TASKS; i++){
-			todoList[i - 1] = todoList[i];
+		todoList[i - 1] = todoList[i];
 	}
 }
 
@@ -39,7 +38,7 @@ void updateDoneByDate(Task* todoList[], Date doneByDate, int orderPosition) {
 }
 
 void updateDescription(Task* todoList[], char* newDescription, int orderPosition) {
-	strcpy_s(todoList[orderPosition]->description, (sizeof(char) * MAX_DESC_SIZE), newDescription, MAX_DESC_SIZE);
+	strncpy_s(todoList[orderPosition]->description, (sizeof(char) * MAX_DESC_SIZE), newDescription, MAX_DESC_SIZE);
 }
 
 Date setDate(int tm_min, int tm_hour, int tm_mday, int tm_mon, int tm_year) {
@@ -48,13 +47,13 @@ Date setDate(int tm_min, int tm_hour, int tm_mday, int tm_mon, int tm_year) {
 	newDate.tm_hour = tm_hour;
 	newDate.tm_mday = tm_mday;
 	newDate.tm_mon = tm_mon;
-	newDate.tm_year - tm_year;
+	newDate.tm_year = tm_year;
 	return newDate;
 }
 
 void printDate(Task* task) {
 	printf("Time:\t\t%d:%d\n", task->doneByDate.tm_hour, task->doneByDate.tm_min);
-	printf("Date:\t\t%d/%d/%d", task->doneByDate.tm_mon, task->doneByDate.tm_mday, task->doneByDate.tm_year);
+	printf("Date:\t\t%d/%d/%d\n", task->doneByDate.tm_mon, task->doneByDate.tm_mday, task->doneByDate.tm_year);
 }
 
 void printTask(Task* TodoList[], int lowerRange, int upperRange) {
@@ -67,12 +66,13 @@ void printTask(Task* TodoList[], int lowerRange, int upperRange) {
 		printDate(task);
 	}
 }
-
+// Search for the title of a task based off of given search term
 void taskSearch(Task* TodoList[], ManagerInfo* position, char* searchTerm) {
-	// I searched how to check if ones string is in another string and this came up.
 	Task* task;
-	for (int i = 0; i <= position->taskAmount; i++) {
+	for (int i = 1; i <= position->taskAmount; i++) {
+
 		task = getTask(TodoList, i);
+		// I searched how to check if ones string is in another string and this came up.
 		if (strstr(task->title, searchTerm) != NULL){
 			printf("\nTitle:\t\t%s\n", task->title);
 			printf("Description:\t%s\n", task->description);

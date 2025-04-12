@@ -26,7 +26,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="input.h" />
-    <ClInclude Include="menu.h" />
     <ClInclude Include="Task.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

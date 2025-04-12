@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdbool.h>
 #include "Task.h"
-#include "menu.h"
 #include "input.h"
 
 // a new main file so i can get everything organized - Alex

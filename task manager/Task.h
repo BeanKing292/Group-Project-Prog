@@ -5,11 +5,14 @@
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>
-#include "menu.h"
 
 #define MAX_TASKS 10
 #define MAX_TITLE_SIZE 20
 #define MAX_DESC_SIZE 100
+
+typedef struct _ManagerInfo {
+    int taskAmount;
+} ManagerInfo;
 
 typedef struct _Date {
     int tm_min;   // minutes (0-59)
@@ -25,6 +28,10 @@ typedef struct _Task {
     char description[MAX_DESC_SIZE];
     int isTask;
 } Task;
+
+void mainUI(Task** todoList, ManagerInfo* position);
+
+void newTaskUI(Task** todoList, ManagerInfo* position);
 
 Task* createTask(char* title, Date doneByDate, char* description);
 
