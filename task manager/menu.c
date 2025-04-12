@@ -64,7 +64,8 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 		"\n4. Display Task"
 		"\n5. Display Range"
 		"\n6. Display all Tasks"
-		"\n7. Search for Tasks");
+		"\n7. Search for Tasks"
+		"\n8. Exit");
 	// Option selection
 	switch (inputInt(">>>")) {
 		case 1:
@@ -106,6 +107,9 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 		case 7:
 			printf("\n7. Search for Tasks");
 			break;
+		case 8:
+			printf("Exiting...");
+			exit(0);
 		default:
 			fprintf(stderr, "\nERROR: invalid input");
 			break;
