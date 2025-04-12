@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #include "Task.h"
-#include "menu.h"
 #include "input.h"
 
 // a new main file so i can get everything organized - Alex
@@ -62,7 +62,7 @@ int main(void) {
 	}
 	position->taskAmount = 0;
 	Task** taskList = openTaskFile("TaskList.bin", position);
-	while (1) {
+	while (true) {
 		mainUI(taskList, position);
 		saveTaskFile("TaskList.bin", taskList, position->taskAmount);
 	}

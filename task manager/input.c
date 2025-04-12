@@ -28,6 +28,5 @@ void inputString(char* dst, char* inputPrompt, int MaxLength) {
 	scanf_s("%[^\n]", input, MaxLength);
 	// Clear the input buffer
 	while (getchar() != '\n');
-	printf("%s", input);
 	strncpy_s(dst, (sizeof(char) * MaxLength), input, MaxLength);
 }

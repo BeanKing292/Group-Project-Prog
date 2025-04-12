@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "Task.h"
-#include "menu.h"
 #include "input.h"
 
 // 1. New task menu
@@ -22,10 +21,8 @@ void newTaskUI(Task** todoList, ManagerInfo* position) {
 		inputInt("Please input task done by number of month: "),
 		inputInt("Please input task done by number of year: ")
 	);
-	if (todoList[position->taskAmount]->title != NULL) {
-		position->taskAmount++;
-	}
-	todoList[position->taskAmount-1] = createTask(title, doneByDate, description);
+	todoList[position->taskAmount] = createTask(title, doneByDate, description);
+	position->taskAmount++;
 }
 
 // 3. Update task menu
@@ -64,12 +61,20 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 		"\n4. Display Task"
 		"\n5. Display Range"
 		"\n6. Display all Tasks"
-		"\n7. Search for Tasks");
+		"\n7. Search for Tasks"
+		"\n8. Exit");
 	// Option selection
+	printf("\n%d\n", position->taskAmount);
 	switch (inputInt(">>>")) {
 		case 1:
-			newTaskUI(todoList, position);
-			break;
+		{
+			if (position->taskAmount >= MAX_TASKS) {
+				printf("Too many tasks, delete some to make room for new ones");
+				break;
+			}
+		newTaskUI(todoList, position);
+		break;
+		}
 		case 2:
 			deleteTask(todoList, inputInt("please input the position number of the task you would like to delete: "), position);
 			break;
@@ -97,15 +102,21 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 			break;
 		}
 		case 6:
-			if (position->taskAmount = 0) {
+			if (position->taskAmount == 0) {
 				fprintf(stderr, "ERROR: No tasks to display");
 				break;
 			}
 			printTask(todoList, 1, position->taskAmount);
 			break;
-		case 7:
-			printf("\n7. Search for Tasks");
+		case 7: {
+			char searchTerm[MAX_TITLE_SIZE];
+			inputString(searchTerm, "Enter title search term: ", MAX_TITLE_SIZE);
+			taskSearch(todoList, position, searchTerm);
 			break;
+		}
+		case 8:
+			printf("Exiting...");
+			exit(0);
 		default:
 			fprintf(stderr, "\nERROR: invalid input");
 			break;
