@@ -1,7 +1,9 @@
+#include <string.h>
 #include "Task.h"
 #include "menu.h"
+#include "input.h"
 
-Task* createTask(const char* title, Date doneByDate, char* description) {
+Task* createTask(char* title, Date doneByDate, char* description) {
 	Task* newTask = malloc(sizeof(Task));
 	if (newTask == NULL) {
 		fprintf(stderr, "error");
@@ -66,6 +68,15 @@ void printTask(Task* TodoList[], int lowerRange, int upperRange) {
 	}
 }
 
-void taskSearch(Task* TodoList[]) {
-
+void taskSearch(Task* TodoList[], ManagerInfo* position, char* searchTerm) {
+	// I searched how to check if ones string is in another string and this came up.
+	Task* task;
+	for (int i = 0; i <= position->taskAmount; i++) {
+		task = getTask(TodoList, i);
+		if (strstr(task->title, searchTerm) != NULL){
+			printf("\nTitle:\t\t%s\n", task->title);
+			printf("Description:\t%s\n", task->description);
+			printDate(task);
+			}
+	}
 }

@@ -1,8 +1,9 @@
 #pragma once
+#include "Task.h"
 
-typedef struct ManagerInfo {
+typedef struct _ManagerInfo {
 	int taskAmount;
-}ManagerInfo;
+} ManagerInfo;
 
 void mainUI(Task** todoList, ManagerInfo* position);
 
