@@ -68,7 +68,7 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 	switch (inputInt(">>>")) {
 		case 1:
 		{
-			if (position->taskAmount > MAX_TASKS) {
+			if (position->taskAmount >= MAX_TASKS) {
 				printf("Too many tasks, delete some to make room for new ones");
 				break;
 			}
