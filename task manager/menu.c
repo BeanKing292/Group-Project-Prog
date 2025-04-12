@@ -69,6 +69,10 @@ void mainUI(Task** todoList, ManagerInfo* position) {
 	// Option selection
 	switch (inputInt(">>>")) {
 		case 1:
+			if (position > MAX_TASKS) {
+				printf("To many tasks, delete some to make room for new ones");
+				break;
+			}
 			newTaskUI(todoList, position);
 			break;
 		case 2:
